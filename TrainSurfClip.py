@@ -131,7 +131,7 @@ def get_model(args):
     print("=> creating model: {}".format(args.model))
     model = getattr(SurfClip, args.model)(global_mean_path=args.global_mean,
                                           global_std_path=args.global_std,
-                                          mask_ratio=args.mask_ratio,
+                                          mask_ratio=(1-args.mask_ratio),
                                           Pretrain = True) # note that args.mask_ratio is by default 0
     model.cuda(args.gpu)
     model = model.to(torch.float32)
